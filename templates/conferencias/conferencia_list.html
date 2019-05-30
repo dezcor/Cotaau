@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-hover">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>Auditorio</td>
+            <td>Titulo</td>
+            <td>explicacion</td>
+            <td>Fecha</td>
+            <td>Hora Inicio</td>
+            <td>Hora Fin</td>
+            <td>tipo</td>
+            <td>Ponente</td>
+          </tr>
+        </thead>
+        <tbody>
+            {% if object_list %}
+            {% for evento in object_list %}
+            <tr = class="table-secondary">
+                <td>{{evento.id}}</td>
+                <td>{{evento.id_aud.Nombre}}</td>
+                <td>{{evento.Titulo}}</td>
+                <td>{{evento.explicacion}}</td>
+                <td>{{evento.Fecha}}</td>
+                <td>{{evento.Hora_ini}}</td>
+                <td>{{evento.Hora_fin}}</td>
+                <td>{{evento.tipo.Nombre}}</td>
+                <td>{{evento.ponente.Nombre}}</td>
+            </tr>
+            {% endfor %}
+
+            {% else %}
+            <h1>No hay resgistros de eventos</h1>
+            {% endif%}
+        </tbody>
+      </table> 
+{% endblock %}
