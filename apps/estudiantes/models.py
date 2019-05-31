@@ -23,4 +23,4 @@ class Estudiante(models.Model):
     sexo = models.ForeignKey(Sexo,on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.NUA)+ self.user.first_name
+        return str(self.NUA) + " | " +  self.user.first_name

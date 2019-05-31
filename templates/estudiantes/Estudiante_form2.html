@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div id="ContenedorReg">
+        	
+            <center><h1>Registrarse</h1></center>
+            
+            <center><div class="ContentForm">
+		 		<div class="input-group input-group-lg">
+				  <input type="Text" class="form-control" name="username" placeholder="Username" aria-describedby="sizing-addon1" required style="width:700px;height:50px">
+				</div>
+				<br>
+                <div class="input-group input-group-lg">
+				  <input type="Text" class="form-control" name="first_name" placeholder="Nombre/s" aria-describedby="sizing-addon1" required style="width:700px;height:50px">
+				</div>
+				<br>
+                
+                <div class="input-group input-group-lg">
+				  <input type="Text" class="form-control" name="last_name" placeholder="Apellidos" aria-describedby="sizing-addon1" required style="width:700px;height:50px" >
+				</div>
+				<br>
+                
+				<div class="input-group input-group-lg">
+				  <input type="Text" name="email" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required style="width:700px;height:50px">
+				</div>
+				<br>
+                
+                <div class="input-group input-group-lg">
+				  <input type="password" name="password1" class="form-control" placeholder="Crontrase&ntilde;a" aria-describedby="sizing-addon1" required style="width:700px;height:50px">
+                </div>
+                <br>
+                <div class="input-group input-group-lg">
+                        <input type="password" name="password2" class="form-control" placeholder="Repetir Crontrase&ntilde;a" aria-describedby="sizing-addon1" required style="width:700px;height:50px">
+                      </div>
+                <br>
+
+                <div class="input-group input-group-lg">
+                    <input type="number" class="form-control" name="NUA" placeholder="NUA" aria-describedby="sizing-addon1" required style="width:700px;height:50px">
+                  </div>
+                <br>
+                <div class="input-group input-group-lg">
+                    <input type="number" class="form-control" name="semestre" placeholder="{{form.semestre.label}}" aria-describedby="sizing-addon1" required style="width:700px;height:50px">
+                </div>
+                <br>
+
+                <div class="input-group input-group-lg">
+                    {{form.carrera}}
+                  </div>
+                <br>
+                <div class="input-group input-group-lg">
+                    {{form.sexo}}
+                </div>
+                <br>
+                
+				<button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Registrarse</button>
+		 </div>	
+		 </div></center>
+        </div>
+</form>
+{% endblock %}
