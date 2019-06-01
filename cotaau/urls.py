@@ -21,7 +21,8 @@ from apps.estudiantes.views import Login
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('estudiantes/',include("apps.estudiantes.urls")),
-    path("",Login.as_view(),{'template_name':'index.html'},name='login'),
+    path("ponentes/",include("apps.ponentes.urls")),
     path("logout/",LogoutView.as_view(),name = 'logout'),
     path("conferencias/",include('apps.conferencias.urls')),
+    path("accounts/login/",Login.as_view(),{'template_name':'index.html'},name='login'),
 ]
