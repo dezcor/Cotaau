@@ -76,13 +76,15 @@ WSGI_APPLICATION = 'cotaau.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+from . import login_local
+ 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'cotaau',
-            'USER': 'miguel',
-            'PASSWORD': '12345',
-            'CHARSET': 'utf8',
+            'NAME': login_local.NAME,
+            'USER': login_local.USER,
+            'PASSWORD': login_local.PASSWORD,
+            'CHARSET': login_local.CHARSET,
     }
 }
 
