@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -17,7 +17,7 @@ class CrearUsuario(CreateView):
     template_name = 'estudiantes/Estudiante_form2.html'
     form_class = EstudianteForm
     second_form_class = RegistroForm
-    success_url = reverse_lazy("conferencia:index")
+    success_url = reverse_lazy("login")
 
     def get_context_data(self, **kwargs):
         context = super(CrearUsuario,self).get_context_data(**kwargs)
@@ -35,6 +35,6 @@ class CrearUsuario(CreateView):
             estudiante = form.save(commit=False)
             estudiante.user = form2.save()
             estudiante.save()
-            return HttpResponseBadRequest(self.get_success_url())
+            return HttpResponseRedirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form,form2=form2))

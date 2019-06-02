@@ -28,9 +28,9 @@ class Conferencia(models.Model):
 
 class Registro(models.Model):
     NUA = models.ForeignKey(Estudiante,on_delete=models.CASCADE)
-    Hora_Entrada =  models.TimeField()
-    Hora_Salida = models.TimeField()
+    Hora_Entrada =  models.TimeField(null=True)
+    Hora_Salida = models.TimeField(null=True)
     conferencia = models.ForeignKey(Conferencia,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.NUA.user.first_name + ' ' + conferencia.Titulo
+        return self.NUA.user.first_name + ' ' + self.conferencia.Titulo
