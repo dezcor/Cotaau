@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
 from apps.estudiantes.views import Login
 
 urlpatterns = [
@@ -25,4 +25,8 @@ urlpatterns = [
     path("logout/",LogoutView.as_view(),name = 'logout'),
     path("conferencias/",include('apps.conferencias.urls')),
     path("accounts/login/",Login.as_view(),{'template_name':'index.html'},name='login'),
+    path("accounts/password_reset",PasswordResetView.as_view(),name='password_reset'),
+    path("accounts/password_reset/done/",PasswordResetDoneView.as_view(),name= 'password_reset_done'),
+    path("accounts/reset/<uidb64>/<token>/",PasswordResetConfirmView.as_view(),name= 'password_reset_confirm'),
+    path("accounts/reset/done/",PasswordResetCompleteView.as_view(),name= 'password_reset_complete'),
 ]
