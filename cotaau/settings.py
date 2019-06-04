@@ -132,3 +132,11 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 from django.urls import reverse_lazy
 
 LOGIN_REDIRECT_URL = reverse_lazy("conferencia:index")
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = login_local.CORREO
+EMAIL_HOST_PASSWORD = login_local.CPASSWORD
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

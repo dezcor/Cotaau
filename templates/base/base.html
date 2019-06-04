@@ -40,6 +40,7 @@
                         aria-haspopup="true" aria-expanded="false">{% if user.is_authenticated %}{{ user.username }}{% else %}Opciones{% endif %}</a>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
                             {% if user.is_authenticated %}
+                            <a class="dropdown-item" href="{% url 'estudiante:editar' user.id %}">Perfil</a>
                             <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
                             {% else %}
                             <a class="dropdown-item" href="{% url 'estudiante:registro' %}">Sign up</a>

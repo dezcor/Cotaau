@@ -2,8 +2,8 @@
 
 {% block navbar %}
 {% endblock %}
-
 {% block content %}
+{% if not user.is_authenticated %}
 <form method="post">
   {% csrf_token %}
   <div id="Contenedor">
@@ -25,8 +25,11 @@
       </div>
       <br>
       <button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Entrar</button>
-      <div class="opcioncontra"><a href="">Olvidaste tu contraseña?</a></div>
+      <div class="opcioncontra"><a href="{% url 'password_reset' %}">Olvidaste tu contraseña?</a></div>
     </div>
   </div>
 </form>
+{% else %}
+<META HTTP-EQUIV="REFRESH" CONTENT="1;URL={% url 'conferencia:index' %}"> </head> 
+{% endif %}
 {% endblock %}
