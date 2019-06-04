@@ -4,7 +4,7 @@
 
   <table class="table table-hover">
         <thead>
-          <tr>
+          <tr class="table-primary">
             <td>#</td>
             <td>Auditorio</td>
             <td>Titulo</td>
@@ -19,10 +19,10 @@
         <tbody>
             {% if object_list %}
             {% for evento in object_list %}
-            <tr class="table-secondary">
+            <tr>
                 <td>{{evento.id}}</td>
                 <td>{{evento.id_aud.Nombre}}</td>
-                <td>{{evento.Titulo}}</td>
+                <td><a href="#">{{evento.Titulo}}</a></td>
                 <td>{{evento.explicacion}}</td>
                 <td>{{evento.Fecha}}</td>
                 <td>{{evento.Hora_ini}}</td>

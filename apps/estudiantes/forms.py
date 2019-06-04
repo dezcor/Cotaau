@@ -20,7 +20,12 @@ class RegistroForm(UserCreationForm):
             {'last_name': 'Apellidos'},
             {'email': 'Correo'},
         ]
-    
+        widgets = {
+            'username': forms.TextInput(attrs={'class':'form-control',"placeholder":"Username",'aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
+            'first_name':forms.TextInput(attrs={'class':'form-control',"placeholder":"Nombre",'aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
+            'email':forms.EmailInput(attrs={'class':'form-control',"placeholder":"Email",'aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
+            'last_name':forms.TextInput(attrs={'class':'form-control',"placeholder":"Apellidos",'aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
+        }
 class EstudianteForm(forms.ModelForm):
 
     class Meta:
@@ -40,10 +45,10 @@ class EstudianteForm(forms.ModelForm):
         }
 
         widgets = {
-            'NUA': forms.NumberInput(attrs={'class':'form-control'}),
-            'semestre':forms.NumberInput(attrs={'class':'form-control'}),
-            'carrera':forms.Select(attrs={'class':'form-control'}),
-            'sexo':forms.Select(attrs={'class':'form-control'}),
+            'NUA': forms.NumberInput(attrs={'class':'form-control',"placeholder":"NUA",'aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
+            'semestre':forms.NumberInput(attrs={'class':'form-control',"placeholder":"Semestre",'aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
+            'carrera':forms.Select(attrs={'class':'form-control','aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
+            'sexo':forms.Select(attrs={'class':'form-control','aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
         }
 
 class UpdateRegsForm(forms.ModelForm):

@@ -6,6 +6,6 @@ from django.contrib.auth.decorators import login_required
 app_name = 'estudiante'
 
 urlpatterns = [
-    path("resgistrar",CrearUsuario.as_view(),name='registro'),
+    path("registrar",CrearUsuario.as_view(),name='registro'),
     path("editar/<int:pk>",login_required(UpdateUsuario.as_view()),name = 'editar'),
 ]

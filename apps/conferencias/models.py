@@ -24,7 +24,7 @@ class Conferencia(models.Model):
     ponente = models.ForeignKey(Ponente,on_delete = models.CASCADE)
 
     def __str__(self):
-        return "Auditorio: {}, Fecha: {}, Esponente: {}".format(self.id_aud.Nombre,self.Fecha,self.ponente.Nombre)
+        return "Auditorio: {}, Fecha: {}, Esponente: {} Titulo: {}".format(self.id_aud.Nombre,self.Fecha,self.ponente.Nombre,self.Titulo)
 
 class Registro(models.Model):
     NUA = models.ForeignKey(Estudiante,on_delete=models.CASCADE)
@@ -33,4 +33,4 @@ class Registro(models.Model):
     conferencia = models.ForeignKey(Conferencia,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.NUA.user.first_name + ' ' + self.Hora_Entrada +' ' +self.Hora_Salida+''+self.conferencia
+        return self.NUA.user.first_name + ' ' + str(self.Hora_Entrada) +' ' + str(self.Hora_Salida)+' '+str(self.conferencia)

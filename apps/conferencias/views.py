@@ -11,11 +11,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 # Create your views here.
 from django.contrib.auth.views import LoginView
-from django.views.generic import ListView,CreateView
+from django.views.generic import ListView,CreateView,UpdateView
 from apps.conferencias.models import Conferencia
 from apps.conferencias.models import Registro 
 
-from apps.conferencias.forms import ConferenciaFrom
+from apps.conferencias.forms import ConferenciaFrom,UpdateEntradaFrom
 
 
 
@@ -36,7 +36,7 @@ class mostrarConferencias(ListView):
 
 class myConferencias(ListView):
     model = Conferencia
-    template_name = 'conferencias/conferencia_list.html'
+    template_name = 'conferencias/myconferencia_list.html'
     paginate_by = 10
 
     def get_queryset(self):
@@ -47,7 +47,10 @@ class myConferencias(ListView):
             return []
         except Registro.DoesNotExist:
             return []
-        return [cons.conferencia for cons in registros]
+        return registros
         
-class ConferenciaIndex():
-    pass
+class UpdateReistroEntradaView(UpdateView):
+    model =  Registro
+    template_name = 'conferencias/Conferencia_Update_Entrada.html'
+    success_url = reverse_lazy("conferencia:index")
+    form_class = UpdateEntradaFrom
