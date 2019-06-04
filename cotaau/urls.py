@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LogoutView
 from apps.estudiantes.views import Login
+from apps.conferencias.views import RegistroConferencias
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,5 @@ urlpatterns = [
     path("logout/",LogoutView.as_view(),name = 'logout'),
     path("conferencias/",include('apps.conferencias.urls')),
     path("accounts/login/",Login.as_view(),{'template_name':'index.html'},name='login'),
+    path("conferencias/Registro/",RegistroConferencias.as_view(),{'template_name':'conferencia_registro.html'},name='Registro'),
 ]

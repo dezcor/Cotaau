@@ -33,4 +33,4 @@ class Registro(models.Model):
     conferencia = models.ForeignKey(Conferencia,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.NUA.user.first_name + ' ' + self.conferencia.Titulo
+        return self.NUA.user.first_name + ' ' + self.Hora_Entrada +' ' +self.Hora_Salida+''+self.conferencia
