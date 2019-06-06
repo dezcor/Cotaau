@@ -20,14 +20,17 @@ from apps.conferencias.forms import ConferenciaFrom,UpdateEntradaFrom
 
 
 class RegistroConferencias(CreateView):
-    model = Conferencia
+    model = Registro
     template_name = 'conferencias/conferencia_registro.html'
     form_class = ConferenciaFrom
-    success_url = reverse_lazy("Registro")
-  
+    success_url = reverse_lazy("Registro")            
 
-            
-
+    def get_initial(self, *args, **kwargs):
+        initial = super(RegistroConferencias, self).get_initial(**kwargs)
+        user = self.request.user
+        alumno = user.estudiante
+        initial['NUA'] = alumno.NUA
+        return initial
 
 class mostrarConferencias(ListView):
     model = Conferencia
@@ -55,8 +58,8 @@ class UpdateReistroEntradaView(UpdateView):
     success_url = reverse_lazy("conferencia:index")
     form_class = UpdateEntradaFrom
 
-def conferencia_view(request):
-    conferencia_list = Conferencia.objects.all()
-    context = {'conferencia_list': conferencia_list}
+def conferencia_view(request,id):
+    conferencia_list = get_object_or_404(Conferencia,pk=id)
+    context = {'conferencia': conferencia_list}
     return render(request, 'conferencia_info/conferencia_info.html', context)
 

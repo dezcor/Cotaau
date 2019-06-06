@@ -20,15 +20,15 @@
             {% if object_list %}
             {% for evento in object_list %}
             <tr>
-                <td>{{evento.id}}</td>
-                <td>{{evento.id_aud.Nombre}}</td>
-                <td><a href="{% url 'conferencia:info' evento.id %}">{{evento.Titulo}}</a></td>
-                <td>{{evento.explicacion}}</td>
-                <td>{{evento.Fecha}}</td>
-                <td>{{evento.Hora_ini}}</td>
-                <td>{{evento.Hora_fin}}</td>
-                <td>{{evento.tipo.Nombre}}</td>
-                <td>{{evento.ponente.Nombre}}</td>
+                <td>{{evento.conferencia.id}}</td>
+                <td>{{evento.conferencia.id_aud.Nombre}}</td>
+                <td><a href="{% url 'conferencia:entrada' evento.id%}">{{evento.conferencia.Titulo}}</a></td>
+                <td>{{evento.conferencia.explicacion}}</td>
+                <td>{{evento.conferencia.Fecha}}</td>
+                <td>{{evento.conferencia.Hora_ini}}</td>
+                <td>{{evento.conferencia.Hora_fin}}</td>
+                <td>{{evento.conferencia.tipo.Nombre}}</td>
+                <td>{{evento.conferencia.ponente.Nombre}}</td>
             </tr>
             {% endfor %}
 

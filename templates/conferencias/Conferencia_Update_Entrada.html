@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div id="ContenedorReg">
+        {% load tz %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Registrarse</button>
+    </div>
+</form>
+{% endblock %}

@@ -13,20 +13,7 @@
               <div class="ContentForm">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-                  <input type="text" class="form-control" name="NUA" placeholder="NUA" aria-describedby="sizing-addon1"
-                    required>
-                </div>
-                <br>
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input type="password" name="Hora_Entrada" class="form-control" 
-                    aria-describedby="sizing-addon1" placeholder="Hora de Entrar" required>
-                </div>
-                <br>
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input type="password" name="Hora_Salida" class="form-control" 
-                    aria-describedby="sizing-addon1" placeholder="Hora de Salida" required>
+                   {{form.NUA}}
                 </div>
                 <br>
                 <div class="input-group input-group-lg">
@@ -35,8 +22,10 @@
                 <br>
           
                
-                
-				<button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Registrarse</button>
+        <tr>        
+        <td><a class="btn btn-lg btn-primary  btn-signin" href="{% url 'conferencia:index' %}" type="button">Cancelar</a></td>
+        <td><button class="btn btn-lg btn-primary btn-signin" id="IngresoLog" type="submit">Registrarse</button></td>
+      </tr>
 		 </div>	
 		 </div></center>
         </div>
