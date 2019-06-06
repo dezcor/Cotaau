@@ -4,7 +4,7 @@ from apps.estudiantes.models import Estudiante
 from django.views.generic import ListView,View
 from django.shortcuts import get_object_or_404,get_list_or_404
 from django.http import Http404
-
+from datetime import time,datetime
 from django import forms
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
@@ -23,14 +23,34 @@ class RegistroConferencias(CreateView):
     model = Registro
     template_name = 'conferencias/conferencia_registro.html'
     form_class = ConferenciaFrom
-    success_url = reverse_lazy("Registro")            
+    success_url = reverse_lazy("conferencia:home")   
+    extra_context = 'mensaje_error'
+    
+    def get(self, request, *args, **kwargs):
+        conferencia = kwargs['conferencia_id']
+        if conferencia:
+            # Intentamos recuperar ese usario desde la DB 
+            conferencia = Conferencia.objects.get(id=conferencia)
+            # Ese get puede fallar, deberías capturar la excepción
+            # Inicializamos el form con ese usuario ya cargado
+            user = self.request.user
+            alumno = user.estudiante
+            initial= {'NUA': alumno.NUA }
+            initial['conferencia'] = conferencia
+            form = self.form_class(initial=initial)
 
-    def get_initial(self, *args, **kwargs):
-        initial = super(RegistroConferencias, self).get_initial(**kwargs)
-        user = self.request.user
-        alumno = user.estudiante
-        initial['NUA'] = alumno.NUA
-        return initial
+            try:
+                e = Registro.objects.get(NUA = alumno.NUA, conferencia = conferencia)
+                context = {"error_message":'Ya te as registrado'}
+            except Registro.DoesNotExist:
+                context = {}
+        else:
+            # Si no especificaron usuario en el request
+            # mostramos el form vacio
+            form = self.form_class()
+        #context = self.get_context_data(**kwargs)
+        context['form'] =form
+        return render(request, self.template_name, context)         
 
 class mostrarConferencias(ListView):
     model = Conferencia
@@ -57,6 +77,39 @@ class UpdateReistroEntradaView(UpdateView):
     template_name = 'conferencias/Conferencia_Update_Entrada.html'
     success_url = reverse_lazy("conferencia:index")
     form_class = UpdateEntradaFrom
+
+    def get(self, request, *args, **kwargs):
+        registro_id = kwargs['pk']
+        if registro_id:
+            # Intentamos recuperar ese usario desde la DB 
+            conferencia = self.model.objects.get(id=registro_id)
+            # Ese get puede fallar, deberías capturar la excepción
+            # Inicializamos el form con ese usuario ya cargado
+            user = self.request.user
+            alumno = user.estudiante
+            initial= {'NUA': conferencia.NUA }
+            hora = datetime.now()
+            hora = time(hora.hour,hora.minute)
+            print(hora)
+            if conferencia.Hora_Entrada is None:
+                initial['Hora_Entrada'] = hora 
+            else:
+                initial['Hora_Entrada'] = conferencia.Hora_Entrada
+                context = {"hora_novalida":"Ya resgistraste tu hora de Entrada"}
+            initial['conferencia'] = conferencia.conferencia
+            form = self.form_class(initial=initial)
+            if not conferencia.conferencia.valida_fecha():
+                context = {"hora_novalida":"Aun no a comensado la conferencia"}
+            else:
+                if context is None:
+                    context = {}
+        else:
+            # Si no especificaron usuario en el request
+            # mostramos el form vacio
+            form = self.form_class()
+        context['form'] = form
+        return render(request, self.template_name, context)         
+
 
 def conferencia_view(request,id):
     conferencia_list = get_object_or_404(Conferencia,pk=id)

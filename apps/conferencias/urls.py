@@ -12,6 +12,6 @@ urlpatterns = [
     path("",login_required(mostrarConferencias.as_view()),name='index'),
     path("home",login_required(myConferencias.as_view()),name='home'),
     path("Registro/edit/<int:pk>",UREView.as_view(),name='entrada'),
-    path("Registro/",RegistroConferencias.as_view(),{'template_name':'conferencia_registro.html'},name='Registro'),
+    path("Registro/<int:conferencia_id>/crear",RegistroConferencias.as_view(),name='Registro'),
     path("info/<int:id>",conferencia_view,name="info"),
 ]
