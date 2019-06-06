@@ -1,22 +1,14 @@
-{% load staticfiles %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
-    <!-- <link rel="stylesheet" href="{% static 'css/materialize.css'%}"> -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css'%}">
-    <link rel="stylesheet" href="{% static 'css/info_style.css' %}">
+{% extends 'base/base.html' %} {% block heade %} {% load staticfiles %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+<!-- <link rel="stylesheet" href="{% static 'css/materialize.css'%}"> -->
+<link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css'%}">
+<link rel="stylesheet" href="{% static 'css/info_style.css' %}">
 
 
-
-</head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/main_style.css' %}"> {% endblock %} {% block navbar %} {% endblock %}
 
 <body>
 
@@ -89,15 +81,22 @@
         <div class="container ">
             <h1 class="display-2 ">Cotaau</h1>
             <p class="lead ">!Gracias a esta pagina podras registrarte a todas las conferencias que necesites para poder completar tus creditos en nuestra division¡</p>
+            {% block title %} Bienvenido a Cotauu {% endblock %} {% block content %}
+            <h1>
+                <div>Bienvenido a</div>
+                <div>
+                    <span>Cotaau</span>
+                </div>
         </div>
-    </div>
-    {%endif%} {% endblock %} {% block header %} {% endblock %} {% block content %} {% endblock %} {% block footer %}
+        {%endif%} {% endblock %} {% block header %} {% endblock %} {% block content %} {% endblock %} {% block footer %}
 
 
-    <!--<h5>Soy el footer del base</h5>-->
-    {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js " integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous "></script>
-    <script src="{% static 'js/bootstrap.min.js' %} "></script>
+        <!--<h5>Soy el footer del base</h5>-->
+        {% endblock %}
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js " integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous "></script>
+        <script src="{% static 'js/bootstrap.min.js' %} "></script>
 </body>
 
 </html>
+<button type="button" class="btn btn-primary btn-lg btn-block">Iniciar Sesion</button>
+<button type="button" class="btn btn-secondary btn-lg btn-block">Registrarse</button> {% endblock %}
