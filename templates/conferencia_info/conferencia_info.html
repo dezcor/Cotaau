@@ -1,0 +1,103 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <!-- <link rel="stylesheet" href="{% static 'css/materialize.css'%}"> -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/info_style.css' %}">
+
+    <title>{% block title %} Cotaau {% endblock%}</title>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Cotaau</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'conferencia:home' %}">Home <span
+                            class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ponentes:index' %}">Ponentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'conferencia:index' %}">Eventos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% if user.is_authenticated %}{{ user.username }}{% else %}Opciones{% endif %}</a>
+                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                            {% if user.is_authenticated %}
+                            <a class="dropdown-item" href="{% url 'estudiante:editar' user.id %}">Perfil</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Salir</a> {% else %}
+                            <a class="dropdown-item" href="{% url 'estudiante:registro' %}">Sign up</a>
+                            <a class="dropdown-item" href="{% url 'login' %}">Login</a> {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <div class="cajabase">
+        {% for conferencia in conferencia_list %} {% if conferencia.id == 1%}
+
+        <div class="cajaBlanca">
+            <h1>{{conferencia.Titulo}}</h1>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Informacion sobre el ponente
+                      </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>{{conferencia.ponente.Nombre}}</p>
+                            <p>{{conferencia.ponente.Trayectoria}}</p>
+                            <p>{{conferencia.ponente.edad}}</p>
+                            <p>{{conferencia.ponente.sexo}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cajaBlanca">
+                <p>Fecha:{{conferencia.Fecha}}</p>
+                <p>Hora inical:{{conferencia.Hora_ini}} Hora final:{{Hora_fin}}</p>
+                <p>tipo de conferencia:{{conferencia.tipo}}</p>
+            </div>
+            <div class="cajaBlanca">
+                sipnosis: {{conferencia.explicacion}}
+            </div>
+
+            <br><br>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" id="button" id="IngresoLog" type="submit">Registrarse</button> {%endif%} {% endfor %}
+
+
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+
+</html>

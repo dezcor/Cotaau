@@ -54,3 +54,9 @@ class UpdateReistroEntradaView(UpdateView):
     template_name = 'conferencias/Conferencia_Update_Entrada.html'
     success_url = reverse_lazy("conferencia:index")
     form_class = UpdateEntradaFrom
+
+def conferencia_view(request):
+    conferencia_list = Conferencia.objects.all()
+    context = {'conferencia_list': conferencia_list}
+    return render(request, 'conferencia_info/conferencia_info.html', context)
+
