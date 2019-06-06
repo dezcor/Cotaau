@@ -1,9 +1,10 @@
-{% load staticfiles %}
-<link rel="stylesheet" href="{% static 'css/style.css'%}">
 <!DOCTYPE html>
 <html>
 
 <head>
+    {% block heade %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -11,8 +12,9 @@
     <!-- <link rel="stylesheet" href="{% static 'css/materialize.css'%}"> -->
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/info_style.css' %}">
+    {% endblock %}
 
-    <title>{% block title %} Cotaau {% endblock%}</title>
+    <title>{% block title %} Cotaau {% endblock %}</title>
 </head>
 
 <body>

@@ -1,23 +1,23 @@
-{% load staticfiles %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+{% extends 'base/base.html' %}
+{% block heade %}
+    {% load staticfiles %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
     <!-- <link rel="stylesheet" href="{% static 'css/materialize.css'%}"> -->
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css'%}">
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/main_style.css' %}">
+{% endblock %}
 
-</head>
+{% block navbar %}
+{% endblock %}
 
-<body>
+{% block title %}
+Bienvenido a Cotauu
+{% endblock %}
+{% block content %}
     <h1>
         <div>Bienvenido a</div>
         <div>
@@ -30,7 +30,4 @@
 
     <button type="button" class="btn btn-primary btn-lg btn-block">Iniciar Sesion</button>
     <button type="button" class="btn btn-secondary btn-lg btn-block">Registrarse</button>
-
-</body>
-
-</html>
+{% endblock %}
