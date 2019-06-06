@@ -51,3 +51,29 @@ class UpdateEntradaFrom(forms.ModelForm):
             'Hora_Entrada': forms.TimeInput(attrs={'type':'time','class':'form-control'}),
             'conferencia':  forms.Select(attrs={'class':'form-control'}),
         }
+
+
+
+class UpdateSalidaFrom(forms.ModelForm):
+    
+    class Meta:
+        model = Registro
+        fields = [
+            'NUA',
+            # 'Hora_Entrada'
+            'Hora_Salida',
+            'conferencia',
+        ]
+        labels = {
+            'NUA': 'NUA',
+             # 'Hora_Entrada':'Hora_Entrada'
+            'Hora_Salida': 'Hora Salida',
+            'conferencia':'Conferencia',
+        }
+
+        widgets = {
+            'NUA':          forms.NumberInput(attrs={'class':'form-control',"readonly":"readonly"}),
+            'Hora_Salida': forms.TimeInput(attrs={'type':'time','class':'form-control',"readonly":"readonly"}),
+            'Hora_Salida': forms.TimeInput(attrs={'type':'time','class':'form-control'}),
+            'conferencia':  forms.Select(attrs={'class':'form-control'}),
+        }

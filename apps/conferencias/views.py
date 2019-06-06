@@ -15,7 +15,7 @@ from django.views.generic import ListView,CreateView,UpdateView
 from apps.conferencias.models import Conferencia
 from apps.conferencias.models import Registro 
 
-from apps.conferencias.forms import ConferenciaFrom,UpdateEntradaFrom
+from apps.conferencias.forms import ConferenciaFrom,UpdateEntradaFrom,UpdateSalidaFrom
 
 
 
@@ -110,9 +110,52 @@ class UpdateReistroEntradaView(UpdateView):
         context['form'] = form
         return render(request, self.template_name, context)         
 
-
 def conferencia_view(request,id):
     conferencia_list = get_object_or_404(Conferencia,pk=id)
     context = {'conferencia': conferencia_list}
     return render(request, 'conferencia_info/conferencia_info.html', context)
 
+
+
+
+       
+class SalidaView(UpdateView):
+    model =  Registro
+    template_name = 'conferencias/conferencia_Salida.html'
+    success_url = reverse_lazy("conferencia:index")
+    form_class = UpdateSalidaFrom
+
+    def get(self, request, *args, **kwargs):
+        registro_id = kwargs['pk']
+        if registro_id:
+            # Intentamos recuperar ese usario desde la DB 
+            conferencia = self.model.objects.get(id=registro_id)
+            # Ese get puede fallar, deberías capturar la excepción
+            # Inicializamos el form con ese usuario ya cargado
+            user = self.request.user
+            alumno = user.estudiante
+            initial= {'NUA': conferencia.NUA }
+            hora = datetime.now()
+            hora = time(hora.hour,hora.minute)
+            print(hora)
+            if conferencia.Hora_Salida is None:
+                initial['Hora_Salida'] = hora
+                initial['Hora_Entrada']= conferencia.Hora_Entrada
+                context = None
+            else:
+                initial['Hora_Salida'] = conferencia.Hora_Salida
+                initial['Hora_Entrada']= conferencia.Hora_Entrada
+                context = {"hora_novalida":"Ya resgistraste tu hora de Salida"}
+            initial['conferencia'] = conferencia.conferencia
+            form = self.form_class(initial=initial)
+            if not conferencia.conferencia.valida_fecha():
+                context = {"hora_novalida":"Aun no a comensado la conferencia"}
+            else:
+                if context is None:
+                    context = {}
+        else:
+            # Si no especificaron usuario en el request
+            # mostramos el form vacio
+            form = self.form_class()
+        context['form'] = form
+        return render(request, self.template_name, context)         
