@@ -93,6 +93,7 @@ class UpdateReistroEntradaView(UpdateView):
             print(hora)
             if conferencia.Hora_Entrada is None:
                 initial['Hora_Entrada'] = hora 
+                context = {}
             else:
                 initial['Hora_Entrada'] = conferencia.Hora_Entrada
                 context = {"hora_novalida":"Ya resgistraste tu hora de Entrada"}
@@ -101,7 +102,7 @@ class UpdateReistroEntradaView(UpdateView):
             if not conferencia.conferencia.valida_fecha():
                 context = {"hora_novalida":"Aun no a comensado la conferencia"}
             else:
-                if context is None:
+                if len(context) < 1:
                     context = {}
         else:
             # Si no especificaron usuario en el request
@@ -137,7 +138,7 @@ class SalidaView(UpdateView):
             initial= {'NUA': conferencia.NUA }
             hora = datetime.now()
             hora = time(hora.hour,hora.minute)
-            print(hora)
+
             if conferencia.Hora_Salida is None:
                 initial['Hora_Salida'] = hora
                 initial['Hora_Entrada']= conferencia.Hora_Entrada
@@ -148,7 +149,7 @@ class SalidaView(UpdateView):
                 context = {"hora_novalida":"Ya resgistraste tu hora de Salida"}
             initial['conferencia'] = conferencia.conferencia
             form = self.form_class(initial=initial)
-            if not conferencia.conferencia.valida_fecha():
+            if conferencia.conferencia.valida_fecha():
                 context = {"hora_novalida":"Aun no a comensado la conferencia"}
             else:
                 if context is None:

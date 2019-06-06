@@ -4,35 +4,41 @@
 {% endblock %}
 {% block content %}
 <form method="post">
-    {% csrf_token %}
-    <div id="ContenedorReg">
-            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-            <center><h1>Registrarse</h1></center>
-            
-            <center><div class="ContentForm">
-              <div class="ContentForm">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-                   {{form.NUA}}
-                </div>
-                <br>
-                <div class="input-group input-group-lg">
-                  {{form.conferencia}}
-                </div>
-                <br>
-          
-        
-        {% if not error_message %}
-        <tr>        
-        <td><a class="btn btn-lg btn-primary  btn-signin" href="{% url 'conferencia:index' %}" type="button">Cancelar</a></td>
-        <td><button class="btn btn-lg btn-primary btn-signin" id="IngresoLog" type="submit">Registrarse</button></td>
-        </tr>
-        {% else %}
-        <td><a class="btn btn-lg btn-primary  btn-signin" href="{% url 'conferencia:index' %}" type="button">Regresar</a></td>
-        {% endif %}
-      
-		 </div>	
-		 </div></center>
+  {% csrf_token %}
+  <div id="ContenedorReg">
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <center>
+      <h1>Registrarse</h1>
+    </center>
+
+    <center>
+      <div class="ContentForm">
+        <div class="ContentForm">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
+            {{form.NUA}}
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            {{form.conferencia}}
+          </div>
+          <br>
+
+          {% if not error_message %}
+          <tr>
+            <td><a class="btn btn-lg btn-primary  btn-signin" href="{% url 'conferencia:index' %}"
+                type="button">Cancelar</a></td>
+            <td><button class="btn btn-lg btn-primary btn-signin" id="IngresoLog" type="submit">Registrarse</button>
+            </td>
+          </tr>
+          {% else %}
+          <td><a class="btn btn-lg btn-primary  btn-signin" href="{% url 'conferencia:index' %}"
+              type="button">Regresar</a></td>
+          {% endif %}
+
         </div>
+      </div>
+    </center>
+  </div>
 </form>
 {% endblock %}
