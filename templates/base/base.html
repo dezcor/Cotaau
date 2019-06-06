@@ -2,17 +2,15 @@
 <html>
 
 <head>
-    {% block heade %}
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">  
+    {% block heade %} {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
     <!-- <link rel="stylesheet" href="{% static 'css/materialize.css'%}"> -->
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css'%}">
-    <link rel="stylesheet" href="{% static 'css/info_style.css' %}">
-    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/info_style.css' %}"> {% endblock %}
 
     <title>{% block title %} Cotaau {% endblock %}</title>
 </head>
@@ -59,25 +57,22 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Cotaau</a>
+        <a class="navbar-brand" href="{% url 'main' %}">Cotaau</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'registro' %}">registrarse</a>
-                </li>
-                <li class="nav-item">
-                    <a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesion</a>
-                </li>
-            </ul>
-        </div>
+        <form class="form-inline my-2 my-lg-0" action="{% url 'registro' %}">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Registro</button>
+        </form>
+
+        <form class="form-inline my-2 my-lg-0" action="{% url 'login' %}">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Iniciar sesion</button>
+        </form>
     </nav>
 
-    {%endif%} {% endblock %} {% block header %} {% endblock %} {% block content %} {% endblock %} {% block footer %} {% endblock %}
+    {%endif%} {% endblock %} {% block header %} {% endblock %} {% block content %} {% endblock %}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 

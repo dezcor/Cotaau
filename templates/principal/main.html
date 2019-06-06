@@ -1,14 +1,19 @@
-{% extends 'base/base.html' %} {% block heade %} {% load staticfiles %}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
-<!-- <link rel="stylesheet" href="{% static 'css/materialize.css'%}"> -->
-<link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css'%}">
-<link rel="stylesheet" href="{% static 'css/info_style.css' %}">
+{% load staticfiles %}
 
+<!DOCTYPE html>
+<html lang="en">
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/main_style.css' %}"> {% endblock %} {% block navbar %} {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <!-- <link rel="stylesheet" href="{% static 'css/materialize.css'%}"> -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/info_style.css' %}">
+</head>
 
 <body>
 
@@ -52,7 +57,9 @@
     <div class="jumbotron jumbotron-fluid ">
         <div class="container ">
             <h1 class="display-2 ">Cotaau</h1>
-            <p class="lead ">registro</p>
+            <h1>
+                <p class="lead ">¡¡¡Bienvenido!!!</h1>
+            <h1>{{user}}</p>
         </div>
     </div>
 
@@ -60,43 +67,62 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="main">Cotaau</a>
+        <a class="navbar-brand" href="{% url 'main' %}">Cotaau</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
 
-        <br>
-        <form class="form-inline my-2 my-lg-0" action="{% url 'login' %}">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Iniciar Sesion</button>
-        </form>
-        <br>
         <form class="form-inline my-2 my-lg-0" action="{% url 'registro' %}">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Registrarse</button>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Registro</button>
         </form>
-        </div>
+
+        <form class="form-inline my-2 my-lg-0" action="{% url 'login' %}">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Iniciar sesion</button>
+        </form>
+
     </nav>
+
+
 
     <div class="jumbotron jumbotron-fluid ">
         <div class="container ">
             <h1 class="display-2 ">Cotaau</h1>
             <p class="lead ">!Gracias a esta pagina podras registrarte a todas las conferencias que necesites para poder completar tus creditos en nuestra division¡</p>
-            {% block title %} Bienvenido a Cotauu {% endblock %} {% block content %}
-            <h1>
-                <div>Bienvenido a</div>
-                <div>
-                    <span>Cotaau</span>
-                </div>
         </div>
-        {%endif%} {% endblock %} {% block header %} {% endblock %} {% block content %} {% endblock %} {% block footer %}
 
 
-        <!--<h5>Soy el footer del base</h5>-->
-        {% endblock %}
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js " integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous "></script>
-        <script src="{% static 'js/bootstrap.min.js' %} "></script>
+    </div>
+
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Funcion</a>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Nuestro objetivo</button>
+    </p>
+    <div class="row">
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample2">
+                <div class="card card-body">
+                    Nuestro objetivo es poder propocionar a los alumnos la versatibilidad de poder inscribirse y recibir informacion sobre las conferencias que se imparten en nuestra division para que de esta manera obtengan los creditos y conocimientos para que puedan terminar
+                    su carrera
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {%endif%} {% endblock %} {% block header %} {% endblock %} {% block content %} {% endblock %} {% block footer %}
+
+
+    <!--<h5>Soy el footer del base</h5>-->
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js " integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin=" anonymous "></script>
+    <script src="{% static 'js/bootstrap.min.js' %} "></script>
 </body>
 
 </html>
-<button type="button" class="btn btn-primary btn-lg btn-block">Iniciar Sesion</button>
-<button type="button" class="btn btn-secondary btn-lg btn-block">Registrarse</button> {% endblock %}
