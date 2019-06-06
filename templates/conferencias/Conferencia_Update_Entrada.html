@@ -4,9 +4,17 @@
 <form method="post">
     {% csrf_token %}
     <div id="ContenedorReg">
+        {% if hora_novalida %}
+        <center><h1>{{hora_novalida}}</h1></center>
+        {% endif %}
         {% load tz %}
         {{ form.as_p }}
+
+        {% if not hora_novalida %}
         <button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Registrarse</button>
+        {% else %}
+        <a class="btn btn-lg btn-primary btn-block btn-signin" href="{% url 'conferencia:home' %}"  type="button">Aceptar</a>
+        {% endif%}
     </div>
 </form>
 {% endblock %}

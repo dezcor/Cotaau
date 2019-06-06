@@ -39,7 +39,7 @@
 
             <br><br>
             <!-- <button class="btn btn-lg btn-primary btn-block btn-signin" id="button" id="IngresoLog" type="submit">Registrarse</button> {%endif%} -->
-            <a class="btn btn-lg btn-primary btn-block btn-signin" href="{% url 'conferencia:Registro' %}">Registrarse</a>
+            <a class="btn btn-lg btn-primary btn-block btn-signin" href="{% url 'conferencia:Registro' conferencia.id %}">Registrarse</a>
         </div>
     </div>
 {% endblock %}

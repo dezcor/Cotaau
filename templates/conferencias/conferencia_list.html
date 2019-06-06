@@ -22,48 +22,50 @@
 {% block title %} Conferencias {% endblock %}
 
 
-<table class="table table-hover">
-    <thead>
-        <tr class="table-primary">
-            <td>#</td>
-            <td>Auditorio</td>
-            <td>Titulo</td>
-            <td>Explicacion</td>
-            <td>Fecha</td>
-            <td>Hora Inicio</td>
-            <td>Hora Fin</td>
-            <td>tipo</td>
-            <td>Ponente</td>
-        </tr>
-    </thead>
-    <tbody>
-        {% if object_list %} {% for evento in object_list %}
-        <tr>
-            <td>{{evento.id}}</td>
-            <td>{{evento.id_aud.Nombre}}</td>
-            <td><a href="{% url 'conferencia:info' evento.id %}">{{evento.Titulo}}</a></td>
-            <td>{{evento.explicacion}}</td>
-            <td>{{evento.Fecha}}</td>
-            <td>{{evento.Hora_ini}}</td>
-            <td>{{evento.Hora_fin}}</td>
-            <td>{{evento.tipo.Nombre}}</td>
-            <td>{{evento.ponente.Nombre}}</td>
-        </tr>
-        {% endfor %} {% else %}
-        <h1>No hay resgistros de eventos</h1>
-        {% endif%}
-    </tbody>
-</table>
-<div>
-    <ul class="pagination">
-        <li class="page-item">
-            {% if page_obj.has_previous %}
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a> {% endif %}
-        </li>
-        <li class="page-item">
-            {% if page_obj.has_next %}
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a> {% endif%}
-        </li>
-    </ul>
-</div>
-{% endblock %}
+<div class="center-block">
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr class="table table-dark">
+                    <td>#</td>
+                    <td>Auditorio</td>
+                    <td>Titulo</td>
+                    <td>Explicacion</td>
+                    <td>Fecha</td>
+                    <td>Hora Inicio</td>
+                    <td>Hora Fin</td>
+                    <td>tipo</td>
+                    <td>Ponente</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if object_list %} {% for evento in object_list %}
+                <tr>
+                    <td>{{evento.id}}</td>
+                    <td>{{evento.id_aud.Nombre}}</td>
+                    <td><a href="{% url 'conferencia:info' evento.id %}">{{evento.Titulo}}</a></td>
+                    <td>{{evento.explicacion}}</td>
+                    <td>{{evento.Fecha}}</td>
+                    <td>{{evento.Hora_ini}}</td>
+                    <td>{{evento.Hora_fin}}</td>
+                    <td>{{evento.tipo.Nombre}}</td>
+                    <td>{{evento.ponente.Nombre}}</td>
+                </tr>
+                {% endfor %} {% else %}
+                <h1>No hay resgistros de eventos</h1>
+                {% endif%}
+            </tbody>
+        </table>
+        <div>
+            <ul class="pagination">
+                <li class="page-item">
+                    {% if page_obj.has_previous %}
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a> {% endif %}
+                </li>
+                <li class="page-item">
+                    {% if page_obj.has_next %}
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a> {% endif%}
+                </li>
+            </ul>
+        </div>
+        {% endblock %}

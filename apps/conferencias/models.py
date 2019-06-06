@@ -2,7 +2,7 @@ from django.db import models
 from apps.ponentes.models import Ponente
 # Create your models here.
 from apps.estudiantes.models import Estudiante
-
+from datetime import datetime
 class Auditorio(models.Model):
     Nombre = models.CharField(max_length=10)
 
@@ -25,6 +25,17 @@ class Conferencia(models.Model):
 
     def __str__(self):
         return "Auditorio: {}, Fecha: {}, Esponente: {} Titulo: {}".format(self.id_aud.Nombre,self.Fecha,self.ponente.Nombre,self.Titulo)
+
+    def valida_fecha(self):
+        d = self.Fecha
+        hi = self.Hora_ini
+        hf = self.Hora_fin
+        actual = datetime.now().date()    
+        actualh = datetime.now().time()
+        if d == actual and (actualh >= hi and actualh<=hf ):
+            return True
+        else:
+            return False
 
 class Registro(models.Model):
     NUA = models.ForeignKey(Estudiante,on_delete=models.CASCADE)
