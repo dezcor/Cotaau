@@ -102,6 +102,8 @@ class UpdateReistroEntradaView(UpdateView):
             else:
                 initial['Hora_Entrada']= conferencia.Hora_Entrada
                 context = {"hora_novalida":"Ya resgistraste tu hora de Entrada"}
+            initial['conferencia'] = conferencia.conferencia
+            form = self.form_class(initial=initial)
         else:
             # Si no especificaron usuario en el request
             # mostramos el form vacio
@@ -120,7 +122,7 @@ def conferencia_view(request,id):
        
 class SalidaView(UpdateView):
     model =  Registro
-    template_name = 'conferencias/conferencia_Salida.html'
+    template_name = 'conferencias/Conferencia_Update_Entrada.html'
     success_url = reverse_lazy("conferencia:index")
     form_class = UpdateSalidaFrom
 

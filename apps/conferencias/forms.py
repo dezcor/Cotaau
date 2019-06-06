@@ -48,7 +48,7 @@ class UpdateEntradaFrom(forms.ModelForm):
 
         widgets = {
             'NUA':          forms.NumberInput(attrs={'class':'form-control',"readonly":"readonly"}),
-            'Hora_Entrada': forms.TimeInput(attrs={'type':'time','class':'form-control'}),
+            'Hora_Entrada': forms.TimeInput(attrs={'type':'time','class':'form-control',"readonly":"readonly"}),
             'conferencia':  forms.Select(attrs={'class':'form-control'}),
         }
 

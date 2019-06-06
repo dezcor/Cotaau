@@ -6,7 +6,7 @@
     <div class="jumbotron">
 <table class="table table-hover">
         <thead>
-          <tr>
+          <tr style="text-align: left">
             <td>#</td>
             <td>Nombre</td>
             <td>Edad</td>
@@ -17,7 +17,7 @@
         <tbody>
             {% if object_list %}
             {% for ponente in object_list %}
-            <tr class="table-secondary">
+            <tr class="table-secondary" style="text-align: left">
                 <td>{{ponente.id}}</td>
                 <td>{{ponente.Nombre}}</td>
                 <td>{{ponente.edad}}</td>
@@ -27,7 +27,11 @@
             {% endfor %}
 
             {% else %}
-            <h1>No hay resgistros de Ponentes</h1>
+            <div class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4 class="alert-heading">Warning!</h4>
+                <p class="mb-0">No hay resgistros de Ponentes</p>
+            </div>
             {% endif%}
         </tbody>
       </table> 

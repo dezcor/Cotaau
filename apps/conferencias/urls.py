@@ -11,8 +11,8 @@ app_name = 'conferencia'
 urlpatterns = [
     path("",login_required(mostrarConferencias.as_view()),name='index'),
     path("home",login_required(myConferencias.as_view()),name='home'),
-    path("Registro/edit/<int:pk>",UREView.as_view(),name='entrada'),
-    path("Registro/<int:conferencia_id>/crear",RegistroConferencias.as_view(),name='Registro'),
-    path("Salida/edit/<int:pk>",SalidaView.as_view(),name='Salida'),
-    path("info/<int:id>",conferencia_view,name="info"),
+    path("Registro/edit/<int:pk>",login_required(UREView.as_view()),name='entrada'),
+    path("Registro/<int:conferencia_id>/crear",login_required(RegistroConferencias.as_view()),name='Registro'),
+    path("Salida/edit/<int:pk>",login_required(SalidaView.as_view()),name='Salida'),
+    path("info/<int:id>",login_required(conferencia_view),name="info"),
 ]

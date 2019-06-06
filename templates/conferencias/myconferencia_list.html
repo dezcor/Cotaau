@@ -6,31 +6,33 @@
   <div class="jumbotron" >
 <table class="table table-hover">
         <thead>
-          <tr class="table-primary">
-            <td>#</td>
+          <tr class="table-primary" style="text-align: left">
             <td>Auditorio</td>
             <td>Titulo</td>
             <td>Explicacion</td>
             <td>Fecha</td>
             <td>Hora Inicio</td>
             <td>Hora Fin</td>
-            <td>tipo</td>
+            <td>Tipo</td>
             <td>Ponente</td>
+            <td></td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
             {% if object_list %}
             {% for evento in object_list %}
-            <tr>
-                <td>{{evento.conferencia.id}}</td>
+            <tr style="text-align: left">
                 <td>{{evento.conferencia.id_aud.Nombre}}</td>
-                <td><a href="{% url 'conferencia:entrada' evento.id%}">{{evento.conferencia.Titulo}}</a></td>
+                <td>{{evento.conferencia.Titulo}}</a></td>
                 <td>{{evento.conferencia.explicacion}}</td>
                 <td>{{evento.conferencia.Fecha}}</td>
                 <td>{{evento.conferencia.Hora_ini}}</td>
                 <td>{{evento.conferencia.Hora_fin}}</td>
                 <td>{{evento.conferencia.tipo.Nombre}}</td>
                 <td>{{evento.conferencia.ponente.Nombre}}</td>
+                <td><a class="btn btn-primary  btn-signin" href="{% url 'conferencia:entrada' evento.id %}">Entrada</a></td>
+                <td><a class="btn btn-primary  btn-signin" href="{% url 'conferencia:Salida' evento.id %}">Salida</a></td>
             </tr>
             {% endfor %}
 

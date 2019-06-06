@@ -35,6 +35,10 @@ class Conferencia(models.Model):
         if d == actual and (actualh >= hi and actualh<=hf ):
             return 0 
         else:
+            if( actual < d):
+                return 1
+            if actual > d:
+                return 2
             if(actualh<hi):
                 return 1
             if(actualh>hf):
