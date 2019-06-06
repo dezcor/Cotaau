@@ -90,20 +90,18 @@ class UpdateReistroEntradaView(UpdateView):
             initial= {'NUA': conferencia.NUA }
             hora = datetime.now()
             hora = time(hora.hour,hora.minute)
-            print(hora)
-            if conferencia.Hora_Entrada is None:
-                initial['Hora_Entrada'] = hora 
-                context = {}
-            else:
-                initial['Hora_Entrada'] = conferencia.Hora_Entrada
-                context = {"hora_novalida":"Ya resgistraste tu hora de Entrada"}
-            initial['conferencia'] = conferencia.conferencia
-            form = self.form_class(initial=initial)
-            if not conferencia.conferencia.valida_fecha():
+            res = conferencia.conferencia.valida_fecha()
+            if res==2:
+                context = {"hora_novalida":"Ya termino la conferencia"}
+            if res==1:
                 context = {"hora_novalida":"Aun no a comensado la conferencia"}
+            if res == 0:
+                context = {}
+            if conferencia.Hora_Entrada is None:
+                initial['Hora_Entrada']= hora
             else:
-                if len(context) < 1:
-                    context = {}
+                initial['Hora_Entrada']= conferencia.Hora_Entrada
+                context = {"hora_novalida":"Ya resgistraste tu hora de Entrada"}
         else:
             # Si no especificaron usuario en el request
             # mostramos el form vacio
@@ -139,27 +137,24 @@ class SalidaView(UpdateView):
             hora = datetime.now()
             hora = time(hora.hour,hora.minute)
 
+            res = conferencia.conferencia.valida_fecha()
+            if res==2:
+                context = {"hora_novalida":"Ya termino la conferencia"}
+            if res==1:
+                context = {"hora_novalida":"Aun no a comensado la conferencia"}
+            if res == 0:
+                context = {}
             if conferencia.Hora_Salida is None:
                 initial['Hora_Salida'] = hora
                 initial['Hora_Entrada']= conferencia.Hora_Entrada
-
             else:
                 initial['Hora_Salida'] = conferencia.Hora_Salida
                 initial['Hora_Entrada']= conferencia.Hora_Entrada
                 context = {"hora_novalida":"Ya resgistraste tu hora de Salida"}
             initial['conferencia'] = conferencia.conferencia
             form = self.form_class(initial=initial)
-<<<<<<< HEAD
-            if conferencia.conferencia.valida_fecha()==2:
-                context = {"hora_novalida":"Ya termino la conferencia"}
-            if conferencia.conferencia.valida_fecha()==1:
-=======
-            if conferencia.conferencia.valida_fecha():
->>>>>>> b3b67ce3e3552a13ea5f38c401700bdcaedd89d0
-                context = {"hora_novalida":"Aun no a comensado la conferencia"}
-            else:
-                    context = {}
-        else: 
+            
+        else:
             # Si no especificaron usuario en el request
             # mostramos el form vacio
             form = self.form_class()
