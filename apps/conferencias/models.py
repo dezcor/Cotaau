@@ -33,9 +33,12 @@ class Conferencia(models.Model):
         actual = datetime.now().date()    
         actualh = datetime.now().time()
         if d == actual and (actualh >= hi and actualh<=hf ):
-            return True
+            return 0 
         else:
-            return False
+            if(actualh<hi):
+                return 1
+            if(actualh>hf):
+                return 2
 
 class Registro(models.Model):
     NUA = models.ForeignKey(Estudiante,on_delete=models.CASCADE)
