@@ -16,19 +16,18 @@
 </head>
 
 <body>
-    {% block navbar %}
+    {% block navbar %} {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Cotaau</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="{% url 'main' %}">Cotaau</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
                     <a class="nav-link" href="{% url 'conferencia:home' %}">Home <span
-                            class="sr-only">(current)</span></a>
+                                    class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'ponentes:index' %}">Ponentes</a>
@@ -37,40 +36,47 @@
                     <a class="nav-link" href="{% url 'conferencia:index' %}">Eventos</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">{% if user.is_authenticated %}{{ user.username }}{% else %}Opciones{% endif %}</a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{% if user.is_authenticated %}{{ user.username }}{% else %}Opciones{% endif %}</a>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                            {% if user.is_authenticated %}
-                            <a class="dropdown-item" href="{% url 'estudiante:editar' user.id %}">Perfil</a>
-                            <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
-                            {% else %}
-                            <a class="dropdown-item" href="{% url 'estudiante:registro' %}">Sign up</a>
-                            <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                            {% endif %}
+                        {% if user.is_authenticated %}
+                        <a class="dropdown-item" href="{% url 'estudiante:editar' user.id %}">Perfil</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Salir</a> {% else %}
+                        <a class="dropdown-item" href="{% url 'estudiante:registro' %}">Sign up</a>
+                        <a class="dropdown-item" href="{% url 'login' %}">Login</a> {% endif %}
                     </div>
                 </li>
-           </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </nav>
-    {% endblock %}
 
-    {% block header %}
-    {% endblock %}
+    {%else%}
 
-    {% block content %}
 
-    <h4>Este es el contenido del archivo</h4>
-    {% endblock %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Cotaau</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-    {% block footer %}
-    <!--<h5>Soy el footer del base</h5>-->
-    {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registro' %}">registrarse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {%endif%} {% endblock %} {% block header %} {% endblock %} {% block content %} {% endblock %} {% block footer %} {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </body>
