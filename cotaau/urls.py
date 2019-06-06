@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LogoutView, PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
-from apps.estudiantes.views import Login
+from apps.estudiantes.views import Login,CrearUsuario
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -24,12 +24,13 @@ urlpatterns = [
     path('estudiantes/',include("apps.estudiantes.urls")),
     path("ponentes/",include("apps.ponentes.urls")),
     path("logout/",LogoutView.as_view(),name = 'logout'),
+    path("registro/",CrearUsuario.as_view(),name='registro'),
     path("conferencias/",include('apps.conferencias.urls')),
     path("accounts/login/",Login.as_view(),{'template_name':'index.html'},name='login'),
     path("accounts/password_reset",PasswordResetView.as_view(),name='password_reset'),
     path("accounts/password_reset/done/",PasswordResetDoneView.as_view(),name= 'password_reset_done'),
     path("accounts/reset/<uidb64>/<token>/",PasswordResetConfirmView.as_view(),name= 'password_reset_confirm'),
     path("accounts/reset/done/",PasswordResetCompleteView.as_view(),name= 'password_reset_complete'),
-    path('', TemplateView.as_view(template_name="principal/main.html"))
+    path('', TemplateView.as_view(template_name="principal/main.html"), name='main')
 
 ]
