@@ -141,6 +141,7 @@ class SalidaView(UpdateView):
             initial= {'NUA': conferencia.NUA }
             hora = datetime.now()
             hora = time(hora.hour,hora.minute)
+            Conferencia.Hora_fin
 
             res = conferencia.conferencia.valida_fecha()
             if res==2:
@@ -149,9 +150,19 @@ class SalidaView(UpdateView):
                 context = {"hora_novalida":"Aun no a comensado la conferencia"}
             if res == 0:
                 context = {}
-            if conferencia.Hora_Salida is None:
+            if conferencia.Hora_Entrada is None:
+                if len(context) == 0: 
+                    context = {"hora_novalida":"No as Registrado tu Entrada"}
                 initial['Hora_Salida'] = hora
-                initial['Hora_Entrada']= conferencia.Hora_Entrada
+                initial['Hora_Entrada']= hora
+            elif conferencia.Hora_Salida is None:
+                if res == 2:
+                    context = {}
+                    initial['Hora_Salida'] = conferencia.conferencia.Hora_fin
+                    initial['Hora_Entrada']= conferencia.Hora_Entrada
+                else:
+                    initial['Hora_Salida'] = hora
+                    initial['Hora_Entrada']= conferencia.Hora_Entrada
             else:
                 initial['Hora_Salida'] = conferencia.Hora_Salida
                 initial['Hora_Entrada']= conferencia.Hora_Entrada
