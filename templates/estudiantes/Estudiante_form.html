@@ -2,10 +2,62 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
-    <div id="ContenedorReg">
-    {{ form.as_p}}
-    {{ form2.as_p}}
-    <button class="btn btn-lg btn-primary btn-signin" type="submit">Guardar</button>
+    <div class="center-block" >
+        <div class="jumbotron" >
+            <div id="ContenedorReg">
+                <center><h1>Perfil</h1></center>
+                    <div class="input-group input-group-lg">
+                            <!-- <input type="Text" class="form-control" name="username" placeholder="Username" aria-describedby="sizing-addon1" required style="width:700px;height:50px"> -->
+                            <td><label class="col-form-label col-form-label-lg">{{form.username.label}}</label>&nbsp;</td>
+                            <td>{{form.username}}&nbsp;</td>
+                          </div>
+                          <br>
+                          <div class="input-group input-group-lg">
+                            <!-- <input type="Text" class="form-control" name="first_name" placeholder="Nombre/s" aria-describedby="sizing-addon1" required style="width:700px;height:50px"> -->
+                            <td><label class="col-form-label col-form-label-lg">{{form.first_name.label}}</label>&nbsp;</td>
+                            <td>{{form.first_name}}</td>
+                          </div>
+                          <br>
+                          <div class="input-group input-group-lg">
+                            <!-- <input type="Text" class="form-control" name="last_name" placeholder="Apellidos" aria-describedby="sizing-addon1" required style="width:700px;height:50px" > -->
+                            <td><label class="col-form-label col-form-label-lg">{{form.last_name.label}}</label>&nbsp;</td>
+                            <td>{{form.last_name}}</td>
+                          </div>
+                          <br>
+                  
+                          <div class="input-group input-group-lg">
+                            <!-- <input type="Text" name="email" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required style="width:700px;height:50px"> -->
+                            <td><label class="col-form-label col-form-label-lg">{{form.email.label}}</label>&nbsp;</td>
+                            <td>{{form.email}}</td>
+                          </div>
+                          <br>
+                  
+                          <div class="input-group input-group-lg">
+                            <!-- <input type="number" class="form-control" name="NUA" placeholder="NUA" aria-describedby="sizing-addon1"
+                              required style="width:700px;height:50px"> -->
+                              <td><label class="col-form-label col-form-label-lg">{{form2.NUA.label}}</label>&nbsp;</td>
+                              <td>{{form2.NUA}}</td>
+                          </div>
+                          <br>
+                          <div class="input-group input-group-lg">
+                            <!-- <input type="number" class="form-control" name="semestre" placeholder="{{form.semestre.label}}"
+                              aria-describedby="sizing-addon1" required style="width:700px;height:50px"> -->
+                              <td><label class="col-form-label col-form-label-lg">{{form2.semestre.label}}</label>&nbsp;</td>
+                            <td>{{form2.semestre}}</td>
+                          </div>
+                          <br>
+                  
+                          <div class="input-group input-group-lg">
+                            <label class="col-form-label col-form-label-lg">{{form2.carrera.label}} </label>&nbsp; {{form2.carrera}}
+                          </div>
+                          <br>
+                          <div class="input-group input-group-lg">
+                            <label class="col-form-label col-form-label-lg">{{form2.sexo.label}} </label>&nbsp; {{form2.sexo}}
+                          </div>
+                          <br>
+                <button class="btn btn-lg btn-primary btn-signin" type="submit">Guardar</button>
+            </div>
+        </div>
     </div>
 
 </form>

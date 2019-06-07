@@ -38,12 +38,15 @@ class RegistroConferencias(CreateView):
             initial= {'NUA': alumno.NUA }
             initial['conferencia'] = conferencia
             form = self.form_class(initial=initial)
-
+            
             try:
                 e = Registro.objects.get(NUA = alumno.NUA, conferencia = conferencia)
-                context = {"error_message":'Ya te as registrado'}
+                context = {"error_message":'Ya te as registrado.'}
             except Registro.DoesNotExist:
-                context = {}
+                if conferencia.valida_fecha() > 1:
+                    context = {"error_message":'Ya a terminado.'}
+                else:
+                    context = {}
         else:
             # Si no especificaron usuario en el request
             # mostramos el form vacio

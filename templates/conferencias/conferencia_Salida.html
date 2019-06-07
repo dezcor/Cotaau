@@ -3,9 +3,16 @@
 {% block content %}
 <form method="post">
     {% csrf_token %}
+
+    <div class="center-block">
+        <div class="jumbotron">
     <div id="ContenedorReg">
         {% if hora_novalida %}
-        <center><h1>{{hora_novalida}}</h1></center>
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4 class="alert-heading">Warning!</h4>
+            <p class="mb-0">{{hora_novalida}}</p>
+        </div>
         {% endif %}
         {% load tz %}
         {{ form.as_p }}
@@ -15,6 +22,8 @@
         {% else %}
         <a class="btn btn-lg btn-primary btn-block btn-signin" href="{% url 'conferencia:home' %}"  type="button">Aceptar</a>
         {% endif%}
+    </div>
+        </div>
     </div>
 </form>
 {% endblock %}

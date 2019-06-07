@@ -5,15 +5,21 @@
 {% block content %}
 <form method="post">
   {% csrf_token %}
-  <div id="ContenedorReg">
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <center>
-      <h1>Registrarse</h1>
-    </center>
-
-    <center>
+  
+  <div class="center-block">
+      <div class="jumbotron">
+  {% if error_message %}
+  <div class="alert alert-dismissible alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4 class="alert-heading">Warning!</h4>
+      <p class="mb-0">{{error_message}}</p>
+  </div>{% endif %}
+    
       <div class="ContentForm">
-        <div class="ContentForm" id="ContenedorReg">
+        <div id="ContenedorReg">
+            <center>
+                <h1>Registrarse</h1>
+            </center>
           <div class="input-group input-group-lg">
             <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
             {{form.NUA}}
@@ -38,7 +44,7 @@
 
         </div>
       </div>
-    </center>
+</div>
   </div>
 </form>
 {% endblock %}

@@ -52,14 +52,26 @@ class EstudianteForm(forms.ModelForm):
         }
 
 class UpdateRegsForm(forms.ModelForm):
-    username = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name')
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+        ]
+        labels = [
+            {'username': 'Nombre de Usuario'},
+            {'first_name': 'Nombre'},
+            {'last_name': 'Apellidos'},
+            {'email': 'Correo'},
+        ]
+        widgets = {
+            'username': forms.TextInput(attrs={'class':'form-control',"placeholder":"Username",'aria-describedby':"sizing-addon1",'required style':"width:auto;height:50px"}),
+            'first_name':forms.TextInput(attrs={'class':'form-control',"placeholder":"Nombre",'aria-describedby':"sizing-addon1",'required style':"width:auto;height:50px"}),
+            'email':forms.EmailInput(attrs={'class':'form-control',"placeholder":"Email",'aria-describedby':"sizing-addon1",'required style':"width:auto;height:50px"}),
+            'last_name':forms.TextInput(attrs={'class':'form-control',"placeholder":"Apellidos",'aria-describedby':"sizing-addon1",'required style':"width:700px;height:50px"}),
+        }
 
     def clean_email(self):
         username = self.cleaned_data.get('username')
@@ -79,10 +91,6 @@ class UpdateRegsForm(forms.ModelForm):
         return user
 
 class UpdateEstudenFrom(forms.ModelForm):
-    NUA = forms.IntegerField(required=True)
-    semestre = forms.IntegerField(required=True)
-    carrera = forms.Select()
-    sexo = forms.Select()
     class Meta:
         model = Estudiante
         fields = [
@@ -91,3 +99,17 @@ class UpdateEstudenFrom(forms.ModelForm):
             'carrera',
             'sexo',
         ]
+
+        labels = {
+            'NUA': 'NUA',
+            'semestre': 'Semestre',
+            'carrera': 'Carrera',
+            'sexo': 'Sexo',
+        }
+
+        widgets = {
+            'NUA': forms.NumberInput(attrs={'class':'form-control',"placeholder":"NUA",'aria-describedby':"sizing-addon1",'required style':"width:auto;height:50px"}),
+            'semestre':forms.NumberInput(attrs={'class':'form-control',"placeholder":"Semestre",'aria-describedby':"sizing-addon1",'required style':"width:auto;height:50px"}),
+            'carrera':forms.Select(attrs={'class':'form-control','aria-describedby':"sizing-addon1",'required style':"width:auto;height:50px"}),
+            'sexo':forms.Select(attrs={'class':'form-control','aria-describedby':"sizing-addon1",'required style':"width:auto;height:50px"}),
+        }
